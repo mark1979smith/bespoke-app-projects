@@ -1,0 +1,9 @@
+<label for="<?= $this->escapeHtml($form_namespace) ?>_<?= $this->escapeHtml($form_key) ?>">
+    <? // Label ?>
+    <?= $this->escapeHtml($form_field['label'])?>
+    <?
+    // If required, add the star to denote it's requires a value
+    if ($is_required) : ?>
+        <span class="rqd">*</span>
+    <? endif ?>
+</label>

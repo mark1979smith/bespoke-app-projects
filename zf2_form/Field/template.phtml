@@ -1,0 +1,14 @@
+<div class="field">
+    <?
+    /*
+     * Get all elements within the field
+     */
+    $children = $this->viewModel()->getCurrent()->getChildren();
+
+    /**
+     * Iterate and echo each field
+     */
+    foreach($children as $child) :
+        echo $renderer->render($child);
+    endforeach; ?>
+</div>

@@ -1,0 +1,48 @@
+<?php
+/**
+ * Does the type exist? If not, we're going to take a guess to the type of element
+ * going off the other data that is available.
+ */
+if(!array_key_exists('type', $form_field)) :
+    $form_field['type'] = null; // Create it to avoid any PHP notices
+endif;
+switch($form_field['type']) :
+
+    // Textarea
+    case 'textarea': ?>
+        <textarea rows="10" cols="40" name="<?= $this->escapeHtml($form_field_name) ?>" id="<?= $this->escapeHtml($form_field_id) ?>"><?= $this->escapeHtml($form_field_value) ?></textarea>
+        <?  break;
+
+    // Specific HTML5 elemens
+    case 'number' :
+    case 'email' : ?>
+        <input type="<?= $form_field['type'] ?>" name="<?= $this->escapeHtml($form_field_name) ?>" id="<?= $this->escapeHtml($form_field_id) ?>" value="<?= $this->escapeHtml($form_field_value) ?>" />
+        <? break;
+
+    // Here's where we guess!
+    default:
+        /**
+         * If we have options then we are more than likely going to be a drop-down box
+         * @todo Add capabilities for checkboxes / radio
+         */
+        if (array_key_exists('options', $form_field) && is_array($form_field['options'])) : ?>
+            <select name="<?= $this->escapeHtml($form_field_name) ?>" id="<?= $this->escapeHtml($form_field_id) ?>">
+                <option value="">Please select</option>
+                <? foreach($form_field['options'] as $form_field_option) : ?>
+                    <? if (is_array($form_field_option))  :
+                        foreach($form_field_option as $form_field_option_key => $form_field_option_value) :?>
+                            <option value="<?= $form_field_option_key ?>" <? if ($form_field_option_key == $form_field_value) : echo ' selected="selected"'; endif; ?>><?= $this->escapeHtml($form_field_option_value); ?></option>
+                        <? endforeach ?>
+                    <? else : ?>
+                        <option value="<?= $form_field_option ?>" <? if ($form_field_option == $form_field_value) : echo ' selected="selected"'; endif; ?>><?= $this->escapeHtml($form_field_option) ?></option>
+                    <? endif ?>
+                <? endforeach ?>
+            </select>
+        <? else :
+            /**
+             * Default to a plain old simple textbox
+             */
+            ?>
+            <input type="text" name="<?= $this->escapeHtml($form_field_name) ?>" id="<?= $this->escapeHtml($form_field_id) ?>" value="<?= $this->escapeHtml($form_field_value) ?>" />
+        <? endif ?>
+<? endswitch;

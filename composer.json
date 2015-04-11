@@ -1,0 +1,23 @@
+{
+  "name": "bespoke-apps/zf2-form",
+  "description": "description_text",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Mark Smith",
+      "email": "webmaster@bespoke-apps.co.uk"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "zendframework/zend-stdlib": "2.*",
+    "zendframework/zend-view": "2.*"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.zendframework.com/"
+    }
+  ]
+}

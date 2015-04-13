@@ -12,7 +12,8 @@
   "require": {
     "php": ">=5.5.0",
     "zendframework/zend-stdlib": "2.*",
-    "zendframework/zend-view": "2.*"
+    "zendframework/zend-view": "2.*",
+    "phpunit/phpunit": "4.8.x-dev"
   },
   "repositories": [
     {

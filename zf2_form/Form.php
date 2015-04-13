@@ -18,7 +18,6 @@ use Zend\View\Renderer\PhpRenderer;
 use Zend\View\Resolver\AggregateResolver;
 use Zend\View\Resolver\TemplatePathStack;
 
-
 class Form
 {
     const VALIDATE_NOT_EMPTY = 'NotEmpty';
